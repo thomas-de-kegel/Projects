@@ -12,14 +12,13 @@ app.get('/',(req, res) =>{
 io.on('connection', (socket)=>{
     console.log('A user has connected!')
     socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
         console.log('message: ' + msg);
     })
     socket.on('disconnect', ()=>{
         console.log('A user has disconnected!')
     });
 });
-
-
 
 server.listen(3000, ()=>{
     console.log('listening on port 3000');
